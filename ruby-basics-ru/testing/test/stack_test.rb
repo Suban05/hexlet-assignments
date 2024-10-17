@@ -9,6 +9,7 @@ class StackTest < Minitest::Test
     stack = Stack.new([1, 2])
     assert { stack.size == 2 }
     assert { stack.pop! == 2 }
+    assert { stack.size == 1 }
   end
 
   def test_should_pop_some_items
