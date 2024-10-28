@@ -38,4 +38,9 @@ class TaskTest < ActiveSupport::TestCase
     @task.creator = nil
     assert_not @task.valid?    
   end
+
+  test "completed is required" do
+    @task.completed = nil
+    assert_not @task.valid?    
+  end
 end
