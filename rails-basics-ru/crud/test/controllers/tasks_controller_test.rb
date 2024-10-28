@@ -11,7 +11,7 @@ class TasksControllerTest < ActionDispatch::IntegrationTest
 
   test "creates a task" do
     assert_difference "Task.count" do
-      post tasks_path, params: { task: { name: "hello", description: "I'm just a task", status: "created", "creator": "B.G" } }
+      post tasks_path, params: { task: { name: "hello", description: "I'm just a task", status: "created", "creator": "B.G", completed: false } }
       assert_redirected_to Task.find_by(name: "hello")
     end
   end
