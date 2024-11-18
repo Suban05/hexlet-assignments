@@ -4,10 +4,10 @@ require 'open-uri'
 
 class Hacker
   class << self
-    def hack(email, password)
+    def hack(_email, _password)
       # BEGIN
       hostname = 'https://rails-collective-blog-ru.hexlet.app'
-      
+
       uri = URI(hostname)
       http = Net::HTTP.new(uri.host, uri.port)
       http.use_ssl = uri.scheme == 'https'
@@ -18,22 +18,21 @@ class Hacker
       cookie = response.response['set-cookie'].split('; ')[0]
 
       html = Nokogiri::HTML(response.body)
-      
+
       token = html.at('input[@name="authenticity_token"]')['value']
-      
+
       params = {
-        'name': "Jon",
-        'email': "jon@example.com",
-        'authenticity_token': token
+        name: 'Jon',
+        email: 'jon@example.com',
+        authenticity_token: token
       }
-      
+
       request = Net::HTTP::Post.new URI.join(hostname, '/users')
       request.body = URI.encode_www_form(params)
-      # Добавляем куки в запрос
       request['Cookie'] = cookie
-      
-      response = http.request request
-      response      
+
+      http.request request
+
       # END
     end
   end
