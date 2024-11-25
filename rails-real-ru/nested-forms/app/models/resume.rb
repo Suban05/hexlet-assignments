@@ -5,6 +5,5 @@ class Resume < ApplicationRecord
   validates :contact, presence: true
 
   # BEGIN
-  
   # END
 end
